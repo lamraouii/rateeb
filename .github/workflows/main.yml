@@ -1,4 +1,4 @@
-name: Build and Deploy (APK Preparation)
+name: Build and Deploy (Stable)
 
 on:
   push:
@@ -11,28 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18.x'
-        cache: 'npm'
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
 
-    - name: Clean install
-      run: npm ci
+      - name: Clean install dependencies
+        run: npm ci
 
-    - name: Build web assets
-      run: npm run build
-      env:
-        VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: web-dist
-        path: dist/
-
-    # Note: To build a real APK, you would need to set up Android SDK 
-    # and use Capacitor/Cordova commands here. 
-    # For now, this builds the web assets which can be wrapped into an APK.
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
