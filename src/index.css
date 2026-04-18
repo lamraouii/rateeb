@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Amiri", serif;
+  --font-display: "Cairo", sans-serif;
+  --font-serif: "Libre Baskerville", serif;
+
+  --color-moroccan-red: #C4374B;
+  --color-moroccan-cream: #FAF8F5;
+  --color-moroccan-gold: #D4AF37;
+  --color-moroccan-green: #1B4332;
+  --color-text-main: #2D2D2D;
+  --color-text-light: #8E8E8E;
+  --color-bg-darker: #E2DDD5;
+}
+
+@layer base {
+  body {
+    @apply bg-moroccan-cream text-text-main font-serif overflow-x-hidden selection:bg-moroccan-gold selection:text-white;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .rtl {
+    direction: rtl;
+  }
+
+  .arabic-text {
+    @apply font-arabic leading-loose text-right;
+  }
+
+  .display-text {
+    @apply font-display text-moroccan-red;
+  }
+}
+
+/* Pattern Background as requested in Design HTML */
+.cultural-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, var(--color-moroccan-red) 1px, transparent 1px),
+    radial-gradient(circle at 0 0, var(--color-moroccan-gold) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.03;
+}
+
+/* Theme-specific styles from Design HTML */
+.spiritual-card {
+  @apply bg-white rounded-[32px] shadow-[0_10px_30px_rgba(196,55,75,0.08)] border border-[rgba(212,175,55,0.2)] transition-all duration-300 relative;
+}
+
+/* Inner decorative border for the card */
+.spiritual-card::before {
+  content: '';
+  @apply absolute inset-[10px] border border-[rgba(212,175,55,0.1)] rounded-[24px] pointer-events-none;
+}
+
+.tap-effect {
+  @apply active:scale-[0.98] transition-transform;
+}
+
+.chip {
+  @apply px-[18px] py-[8px] rounded-[20px] text-[14px] border border-moroccan-red text-moroccan-red bg-transparent transition-all;
+}
+
+.chip-active {
+  @apply bg-moroccan-red text-white;
+}
+
+.counter-text {
+  @apply text-[64px] font-thin text-moroccan-red opacity-30 leading-none;
+}
+
+.tap-indicator {
+  @apply text-[11px] uppercase tracking-[1px] text-moroccan-gold mb-[5px] font-sans font-bold;
+}
+
+.glass-nav {
+  @apply bg-white/95 backdrop-blur-md border-t border-[#EEE] h-[85px] pb-[20px];
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-moroccan-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-moroccan-gold/30 rounded-full;
+}
