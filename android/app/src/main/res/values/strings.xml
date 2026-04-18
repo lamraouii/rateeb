@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Rateeb</string>
+    <string name="title_activity_main">Rateeb</string>
+    <string name="package_name">com.ismail.rateeb</string>
+    <string name="custom_url_scheme">com.ismail.rateeb</string>
+</resources>
