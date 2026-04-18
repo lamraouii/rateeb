@@ -18,17 +18,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: npm
+          # ❌ Remove cache: npm — stale cache causes the oxide binding bug
 
-      - name: Clean install dependencies
-        run: npm ci
+      - name: Remove lock file and reinstall
+        run: |
+          npm ci
+          npm install @tailwindcss/oxide-linux-x64-gnu --save-optional
 
       - name: Build project
         run: npm run build
         env:
           VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
-      - name: Upload build
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
